@@ -14,43 +14,55 @@
 }
 
 @layer components {
-  .table-container {
-    @apply bg-white rounded-lg shadow-md p-6;
+  .main-container {
+    @apply p-4 max-w-7xl mx-auto;
   }
 
-  .table-wrapper {
-    @apply overflow-x-auto mt-4;
+  .section-title {
+    @apply text-2xl font-bold mb-4;
   }
 
-  .data-table {
-    @apply w-full;
+  .main-table {
+    @apply w-full border-collapse;
   }
 
-  .data-table th {
-    @apply px-4 py-2 text-right font-medium text-gray-900 bg-gray-50 border-b;
+  .main-table th {
+    @apply text-right p-2 font-normal text-gray-800 border-b;
   }
 
-  .data-table td {
-    @apply px-4 py-2 text-gray-900 border-b;
+  .main-table td {
+    @apply text-right p-2 border-b;
   }
 
-  .data-table tr:hover {
-    @apply bg-gray-50;
+  .select-box {
+    @apply w-32 rounded border border-gray-300 text-sm;
   }
 
-  .select-input {
-    @apply w-full border rounded-md px-2 py-1 bg-white;
+  .action-button {
+    @apply px-3 py-1 bg-gray-100 text-gray-800 rounded border border-gray-300 hover:bg-gray-200 text-sm;
   }
 
-  .btn {
-    @apply px-4 py-2 rounded-md text-white transition-colors duration-200;
+  .report-button {
+    @apply px-4 py-1 bg-gray-100 text-gray-800 rounded border border-gray-300 hover:bg-gray-200 text-sm;
   }
 
-  .btn-primary {
-    @apply bg-blue-500 hover:bg-blue-600;
+  .reports-section {
+    @apply mt-8;
   }
 
-  .btn-success {
-    @apply bg-green-500 hover:bg-green-600;
+  .report-title {
+    @apply text-xl font-bold mb-4;
+  }
+
+  .report-table {
+    @apply w-full mt-4;
+  }
+
+  .report-table td {
+    @apply py-1;
+  }
+
+  .report-total {
+    @apply text-left;
   }
 }
