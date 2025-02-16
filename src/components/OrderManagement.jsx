@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Loader2, Filter, X, FileText, ClipboardList, Eye } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
 
 const OrderManagement = () => {
   const [orders, setOrders] = useState([]);
@@ -10,7 +9,6 @@ const OrderManagement = () => {
   const [selectedOrderDetails, setSelectedOrderDetails] = useState(null);
   const [productsMap, setProductsMap] = useState({});
 
-  // כל הפונקציות המקוריות נשארות אותו דבר
   const fetchProducts = async () => {
     try {
       const response = await fetch('https://api.yeshinvoice.co.il/api/v1/getAllProducts', {
@@ -18,8 +16,8 @@ const OrderManagement = () => {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': JSON.stringify({
-            "secret": "094409be-bb9c-4a51-b3b5-2d15dc2d2154",
-            "userkey": "CWKaRN8167zMA5niguEf"
+            secret: "094409be-bb9c-4a51-b3b5-2d15dc2d2154",
+            userkey: "CWKaRN8167zMA5niguEf"
           })
         },
         body: JSON.stringify({
@@ -48,8 +46,8 @@ const OrderManagement = () => {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': JSON.stringify({
-            "secret": "094409be-bb9c-4a51-b3b5-2d15dc2d2154",
-            "userkey": "CWKaRN8167zMA5niguEf"
+            secret: "094409be-bb9c-4a51-b3b5-2d15dc2d2154",
+            userkey: "CWKaRN8167zMA5niguEf"
           })
         },
         body: JSON.stringify({
@@ -136,15 +134,15 @@ const OrderManagement = () => {
 
   const getDayName = (day) => {
     const days = {
-      'sunday': 'ראשון',
-      'monday': 'שני',
-      'tuesday': 'שלישי',
-      'wednesday': 'רביעי',
-      'thursday': 'חמישי'
+      sunday: 'ראשון',
+      monday: 'שני',
+      tuesday: 'שלישי',
+      wednesday: 'רביעי',
+      thursday: 'חמישי'
     };
     return days[day];
   };
-// המשך הקומפוננטה
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto p-6">
@@ -162,36 +160,30 @@ const OrderManagement = () => {
           <>
             {/* Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <Card className="bg-white shadow-sm">
-                <CardContent className="p-6">
-                  <div className="text-4xl font-bold text-primary-600 mb-2">
-                    {orders.length}
-                  </div>
-                  <div className="text-gray-600">הזמנות פתוחות</div>
-                </CardContent>
-              </Card>
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <div className="text-4xl font-bold text-primary-600 mb-2">
+                  {orders.length}
+                </div>
+                <div className="text-gray-600">הזמנות פתוחות</div>
+              </div>
               
-              <Card className="bg-white shadow-sm">
-                <CardContent className="p-6">
-                  <div className="text-4xl font-bold text-green-600 mb-2">
-                    {Object.keys(deliveryDays).length}
-                  </div>
-                  <div className="text-gray-600">הזמנות משובצות</div>
-                </CardContent>
-              </Card>
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <div className="text-4xl font-bold text-green-600 mb-2">
+                  {Object.keys(deliveryDays).length}
+                </div>
+                <div className="text-gray-600">הזמנות משובצות</div>
+              </div>
               
-              <Card className="bg-white shadow-sm">
-                <CardContent className="p-6">
-                  <div className="text-4xl font-bold text-orange-600 mb-2">
-                    {orders.length - Object.keys(deliveryDays).length}
-                  </div>
-                  <div className="text-gray-600">הזמנות ממתינות</div>
-                </CardContent>
-              </Card>
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <div className="text-4xl font-bold text-orange-600 mb-2">
+                  {orders.length - Object.keys(deliveryDays).length}
+                </div>
+                <div className="text-gray-600">הזמנות ממתינות</div>
+              </div>
             </div>
 
             {/* Table Section */}
-            <Card className="bg-white shadow-sm mb-8">
+            <div className="bg-white rounded-lg shadow-sm mb-8">
               <div className="p-6 border-b border-gray-200">
                 <div className="flex items-center justify-between">
                   <h2 className="text-xl font-semibold text-gray-900">רשימת הזמנות</h2>
@@ -274,9 +266,10 @@ const OrderManagement = () => {
                   </tbody>
                 </table>
               </div>
-            </Card>
-{/* Reports Section */}
-            <Card className="bg-white shadow-sm">
+            </div>
+
+            {/* Reports Section */}
+            <div className="bg-white rounded-lg shadow-sm">
               <div className="p-6 border-b border-gray-200">
                 <h2 className="text-xl font-semibold text-gray-900">הפקת דוחות</h2>
               </div>
@@ -314,7 +307,7 @@ const OrderManagement = () => {
                   </button>
                 </div>
               </div>
-            </Card>
+            </div>
 
             {/* Modal for Order Details */}
             {selectedOrderDetails?.type === 'single' && (
@@ -349,7 +342,9 @@ const OrderManagement = () => {
                       <tbody className="divide-y divide-gray-200">
                         {selectedOrderDetails.order.items?.map((item, index) => (
                           <tr key={index} className="hover:bg-gray-50">
-                            <td className="px-4 py-2 text-sm text-gray-900">{productsMap[item.sku] || `מוצר ${item.sku}`}</td>
+                            <td className="px-4 py-2 text-sm text-gray-900">
+                              {productsMap[item.sku] || `מוצר ${item.sku}`}
+                            </td>
                             <td className="px-4 py-2 text-sm text-gray-500">{item.quantity}</td>
                             <td className="px-4 py-2 text-sm text-gray-500">{item.price}</td>
                           </tr>
@@ -363,7 +358,7 @@ const OrderManagement = () => {
 
             {/* Summary Report Section */}
             {selectedOrderDetails?.type === 'summary' && (
-              <Card className="mt-8 bg-white shadow-sm">
+              <div className="mt-8 bg-white rounded-lg shadow-sm">
                 <div className="p-6 border-b border-gray-200">
                   <h3 className="text-xl font-semibold text-gray-900">
                     דוח מרוכז - יום {getDayName(selectedOrderDetails.day)}
@@ -387,12 +382,12 @@ const OrderManagement = () => {
                     </tbody>
                   </table>
                 </div>
-              </Card>
+              </div>
             )}
 
             {/* Detailed Report Section */}
             {selectedOrderDetails?.type === 'detailed' && (
-              <Card className="mt-8 bg-white shadow-sm">
+              <div className="mt-8 bg-white rounded-lg shadow-sm">
                 <div className="p-6 border-b border-gray-200">
                   <h3 className="text-xl font-semibold text-gray-900">
                     דוח מפורט - יום {getDayName(selectedOrderDetails.day)}
@@ -414,7 +409,9 @@ const OrderManagement = () => {
                         <tbody className="divide-y divide-gray-200">
                           {order.items?.map((item, itemIndex) => (
                             <tr key={itemIndex} className="hover:bg-gray-50">
-                              <td className="px-4 py-2 text-sm text-gray-900">{productsMap[item.sku] || `מוצר ${item.sku}`}</td>
+                              <td className="px-4 py-2 text-sm text-gray-900">
+                                {productsMap[item.sku] || `מוצר ${item.sku}`}
+                              </td>
                               <td className="px-4 py-2 text-sm text-gray-500">{item.quantity}</td>
                             </tr>
                           ))}
@@ -423,7 +420,7 @@ const OrderManagement = () => {
                     </div>
                   ))}
                 </div>
-              </Card>
+              </div>
             )}
           </>
         )}
