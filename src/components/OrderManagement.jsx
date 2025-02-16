@@ -158,23 +158,23 @@ const OrderManagement = () => {
           </div>
         ) : (
           <>
-            {/* Cards Grid */}
+            {/* Stats Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-white rounded-lg shadow-sm p-6">
+              <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
                 <div className="text-4xl font-bold text-primary-600 mb-2">
                   {orders.length}
                 </div>
                 <div className="text-gray-600">הזמנות פתוחות</div>
               </div>
               
-              <div className="bg-white rounded-lg shadow-sm p-6">
+              <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
                 <div className="text-4xl font-bold text-green-600 mb-2">
                   {Object.keys(deliveryDays).length}
                 </div>
                 <div className="text-gray-600">הזמנות משובצות</div>
               </div>
               
-              <div className="bg-white rounded-lg shadow-sm p-6">
+              <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
                 <div className="text-4xl font-bold text-orange-600 mb-2">
                   {orders.length - Object.keys(deliveryDays).length}
                 </div>
@@ -182,13 +182,13 @@ const OrderManagement = () => {
               </div>
             </div>
 
-            {/* Table Section */}
-            <div className="bg-white rounded-lg shadow-sm mb-8">
+            {/* Orders Table Section */}
+            <div className="bg-white rounded-lg shadow-sm mb-8 border border-gray-100">
               <div className="p-6 border-b border-gray-200">
                 <div className="flex items-center justify-between">
                   <h2 className="text-xl font-semibold text-gray-900">רשימת הזמנות</h2>
                   <div className="flex gap-4">
-                    <button className="inline-flex items-center gap-2 px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
+                    <button className="inline-flex items-center gap-2 px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
                       <Filter className="w-4 h-4" />
                       סינון
                     </button>
@@ -222,7 +222,7 @@ const OrderManagement = () => {
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                     {orders.map(order => (
-                      <tr key={order.ID} className="hover:bg-gray-50">
+                      <tr key={order.ID} className="hover:bg-gray-50 transition-colors">
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           {order.DocumentNumber}
                         </td>
@@ -239,7 +239,7 @@ const OrderManagement = () => {
                           <select
                             value={deliveryDays[order.ID] || ''}
                             onChange={(e) => assignDeliveryDay(order.ID, e.target.value)}
-                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
+                            className="block w-full rounded-md border-gray-300 bg-white shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                           >
                             <option value="">בחר יום</option>
                             <option value="sunday">ראשון</option>
@@ -255,7 +255,7 @@ const OrderManagement = () => {
                               type: 'single',
                               order: order
                             })}
-                            className="inline-flex items-center gap-2 px-3 py-1 text-sm text-primary-700 hover:text-primary-900"
+                            className="inline-flex items-center gap-2 px-3 py-1 text-sm text-primary-600 hover:text-primary-900 transition-colors"
                           >
                             <Eye className="w-4 h-4" />
                             פרטים
@@ -269,7 +269,7 @@ const OrderManagement = () => {
             </div>
 
             {/* Reports Section */}
-            <div className="bg-white rounded-lg shadow-sm">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-100">
               <div className="p-6 border-b border-gray-200">
                 <h2 className="text-xl font-semibold text-gray-900">הפקת דוחות</h2>
               </div>
@@ -278,7 +278,7 @@ const OrderManagement = () => {
                   <select
                     value={selectedDay}
                     onChange={(e) => setSelectedDay(e.target.value)}
-                    className="block w-48 rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
+                    className="block w-48 rounded-md border-gray-300 bg-white shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                   >
                     <option value="">בחר יום</option>
                     <option value="sunday">ראשון</option>
@@ -289,7 +289,7 @@ const OrderManagement = () => {
                   </select>
                   
                   <button
-                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50"
+                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 transition-colors"
                     disabled={!selectedDay}
                     onClick={generateSummaryReport}
                   >
@@ -298,7 +298,7 @@ const OrderManagement = () => {
                   </button>
                   
                   <button
-                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50"
+                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 transition-colors"
                     disabled={!selectedDay}
                     onClick={generateDetailedReport}
                   >
@@ -320,7 +320,7 @@ const OrderManagement = () => {
                       </h3>
                       <button 
                         onClick={() => setSelectedOrderDetails(null)}
-                        className="text-gray-400 hover:text-gray-500"
+                        className="text-gray-400 hover:text-gray-500 transition-colors"
                       >
                         <X className="w-5 h-5" />
                       </button>
@@ -328,20 +328,28 @@ const OrderManagement = () => {
                     
                     <div className="mb-6">
                       <p className="text-sm text-gray-500">לקוח</p>
-                      <p className="text-lg font-medium text-gray-900">{selectedOrderDetails.order.CustomerName}</p>
+                      <p className="text-lg font-medium text-gray-900">
+                        {selectedOrderDetails.order.CustomerName}
+                      </p>
                     </div>
                     
                     <table className="w-full">
                       <thead className="bg-gray-50">
                         <tr>
-                          <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">שם מוצר</th>
-                          <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">כמות</th>
-                          <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">מחיר ליחידה</th>
+                          <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">
+                            שם מוצר
+                          </th>
+                          <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">
+                            כמות
+                          </th>
+                          <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">
+                            מחיר ליחידה
+                          </th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-200">
                         {selectedOrderDetails.order.items?.map((item, index) => (
-                          <tr key={index} className="hover:bg-gray-50">
+                          <tr key={index} className="hover:bg-gray-50 transition-colors">
                             <td className="px-4 py-2 text-sm text-gray-900">
                               {productsMap[item.sku] || `מוצר ${item.sku}`}
                             </td>
@@ -356,9 +364,9 @@ const OrderManagement = () => {
               </div>
             )}
 
-            {/* Summary Report Section */}
+            {/* Reports Display */}
             {selectedOrderDetails?.type === 'summary' && (
-              <div className="mt-8 bg-white rounded-lg shadow-sm">
+              <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-100">
                 <div className="p-6 border-b border-gray-200">
                   <h3 className="text-xl font-semibold text-gray-900">
                     דוח מרוכז - יום {getDayName(selectedOrderDetails.day)}
@@ -368,13 +376,17 @@ const OrderManagement = () => {
                   <table className="w-full">
                     <thead className="bg-gray-50">
                       <tr>
-                        <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">מוצר</th>
-                        <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">כמות</th>
+                        <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">
+                          מוצר
+                        </th>
+                        <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">
+                          כמות
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
                       {selectedOrderDetails.products.map((product, index) => (
-                        <tr key={index} className="hover:bg-gray-50">
+                        <tr key={index} className="hover:bg-gray-50 transition-colors">
                           <td className="px-4 py-2 text-sm text-gray-900">{product.name}</td>
                           <td className="px-4 py-2 text-sm text-gray-500">{product.quantity}</td>
                         </tr>
@@ -385,9 +397,8 @@ const OrderManagement = () => {
               </div>
             )}
 
-            {/* Detailed Report Section */}
             {selectedOrderDetails?.type === 'detailed' && (
-              <div className="mt-8 bg-white rounded-lg shadow-sm">
+              <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-100">
                 <div className="p-6 border-b border-gray-200">
                   <h3 className="text-xl font-semibold text-gray-900">
                     דוח מפורט - יום {getDayName(selectedOrderDetails.day)}
@@ -402,13 +413,17 @@ const OrderManagement = () => {
                       <table className="w-full">
                         <thead className="bg-gray-50">
                           <tr>
-                            <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">מוצר</th>
-                            <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">כמות</th>
+                            <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">
+                              מוצר
+                            </th>
+                            <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">
+                              כמות
+                            </th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
                           {order.items?.map((item, itemIndex) => (
-                            <tr key={itemIndex} className="hover:bg-gray-50">
+                            <tr key={itemIndex} className="hover:bg-gray-50 transition-colors">
                               <td className="px-4 py-2 text-sm text-gray-900">
                                 {productsMap[item.sku] || `מוצר ${item.sku}`}
                               </td>
